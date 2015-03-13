@@ -33,7 +33,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 )
 
 SUIT_CONFIG = {
-    'ADMIN_NAME': 'Magap Semilla'
+    'ADMIN_NAME': 'Botiquin Veterinario'
 }
 
 # Application definition
