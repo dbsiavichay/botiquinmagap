@@ -48,7 +48,7 @@ class Venta(models.Model):
 		return '<span class="icon-pencil"></a>'
 
 	def __unicode__(self):
-		return 'Cliente: %s, Valor: %s, Fecha: %s' % self.cliente, self.valorTotal, self.fecha
+		return 'Cliente: %s, Fecha: %s, Valor: %s' % self.cliente, self.fecha, self.valorTotal
 
 	edit.allow_tags = True
 
