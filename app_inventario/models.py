@@ -33,6 +33,18 @@ class Kardex(models.Model):
 	producto = models.ForeignKey(Producto)
 	asociacion = models.ForeignKey(Asociacion)
 
+	def get_transaccion(self):
+		if tipo_transaccion == 0:
+			return "Entrada"
+		else:
+			return "Salida"
+
+	def get_total_transaccion(self):
+		return self.cantidad * self.valor_unitario
+
+	def get_total_saldo(self):
+		return self.saldo * self.valor_unitario
+
 	def edit(self):
 		return '<span class="icon-pencil"></a>'
 
