@@ -11,12 +11,12 @@ class Compra(models.Model):
 		return '<span class="icon-pencil"></a>'
 
 	def __unicode__(self):
-		return 'Fecha: %s, Valor: %s' % self.fecha, self.valorTotal
+		return 'Fecha: %s, Valor: %s' % self.fecha, self.valor_total
 
 	edit.allow_tags = True
 
 class DetalleCompra(models.Model):
-	cantidad = models.DecimalField(max_digits = 5, decimal_places = 2)
+	cantidad = models.DecimalField(max_digits = 7, decimal_places = 2)
 	costo_unitario = models.DecimalField(max_digits = 7, decimal_places = 2)
 	costo_total = models.DecimalField(max_digits = 9, decimal_places = 2)
 	producto = models.ForeignKey(Producto)

@@ -48,12 +48,12 @@ class Venta(models.Model):
 		return '<span class="icon-pencil"></a>'
 
 	def __unicode__(self):
-		return 'Cliente: %s, Fecha: %s, Valor: %s' % self.cliente, self.fecha, self.valorTotal
+		return 'Cliente: %s, Fecha: %s, Valor: %s' % self.cliente, self.fecha, self.valor_total
 
 	edit.allow_tags = True
 
 class DetalleVenta(models.Model):
-	cantidad = models.DecimalField(max_digits = 5, decimal_places = 2);
+	cantidad = models.DecimalField(max_digits = 7, decimal_places = 2)
 	precio_unitario = models.DecimalField(max_digits = 7, decimal_places = 2)
 	precio_total = models.DecimalField(max_digits = 9, decimal_places = 2)
 	producto = models.ForeignKey(Producto)
@@ -65,7 +65,7 @@ class DetalleVenta(models.Model):
 	edit.allow_tags = True
 
 class UsoVenta(models.Model):
-	cantidad = models.DecimalField(max_digits = 5, decimal_places = 2)
+	cantidad = models.DecimalField(max_digits = 7, decimal_places = 2)
 	enfermedad = models.ForeignKey(Enfermedad)
 	especie = models.ForeignKey(Especie)
 	detalle_venta = models.ForeignKey(DetalleVenta)
