@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'app_localizacion',
     'app_botiquin',
     'app_ventas',
+    'app_compras',
 )
 
 MIDDLEWARE_CLASSES = (
