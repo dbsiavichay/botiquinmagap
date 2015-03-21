@@ -3,6 +3,26 @@ from app_localizacion.models import Asociacion, Sector, Parroquia, Canton, Provi
 from app_ventas.models import Venta
 import json
 
+class ProvinciaSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Provincia
+		fields = ('id', 'codigo', 'nombre',)
+
+class CantonSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = Canton
+		fields = ('id', 'codigo', 'nombre', 'provincia')
+
+class ParroquiaSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = Parroquia
+		fields = ('id', 'codigo', 'nombre', 'canton')
+
+class SectorSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = Sector
+		fields = ('id', 'nombre','parroquia')
+
 class AsociacionSerializer(serializers.HyperlinkedModelSerializer):
 
 	tecnico = serializers.SerializerMethodField()
@@ -22,19 +42,3 @@ class AsociacionSerializer(serializers.HyperlinkedModelSerializer):
 
 	def get_beneficiarios(self, obj):
 		return Venta.objects.values('cliente__nombre').filter(asociacion = obj).distinct().count()
-
-class SectorSerializer(serializers.HyperlinkedModelSerializer):
-	class Meta:
-		model = Sector
-
-class ParroquiaSerializer(serializers.HyperlinkedModelSerializer):
-	class Meta:
-		model = Parroquia
-
-class CantonSerializer(serializers.HyperlinkedModelSerializer):
-	class Meta:
-		model = Canton
-
-class ProvinciaSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Provincia
