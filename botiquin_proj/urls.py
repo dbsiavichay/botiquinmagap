@@ -4,11 +4,12 @@ from rest_framework import routers
 from app_localizacion.views import *
 
 router = routers.DefaultRouter()
-router.register(r'localizacion/asociaciones', AsociacionViewSet)
-router.register(r'localizacion/sectores', SectorViewSet)
-router.register(r'localizacion/parroquias', ParroquiaViewSet)
-router.register(r'localizacion/cantones', CantonViewSet)
+
 router.register(r'localizacion/provincias', ProvinciaViewSet)
+router.register(r'localizacion/cantones', CantonViewSet)
+router.register(r'localizacion/parroquias', ParroquiaViewSet)
+router.register(r'localizacion/sectores', SectorViewSet)
+router.register(r'localizacion/asociaciones', AsociacionViewSet)
 
 urlpatterns = patterns('',
     # Examples:
