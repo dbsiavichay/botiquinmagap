@@ -55,8 +55,8 @@ class Sector(models.Model):
 class Asociacion(models.Model):
 	nombre = models.CharField(max_length = 128)
 	responsable = models.CharField(max_length = 256)
-	cordenadax = models.FloatField(null = True, blank=True)
-	cordenaday = models.FloatField(null = True, blank=True)
+	latitud = models.FloatField(null = True, blank=True)
+	longitud = models.FloatField(null = True, blank=True)
 	observacion = models.TextField(null = True, blank=True)
 	sector = models.ForeignKey(Sector)
 	tecnico = models.ForeignKey(User)

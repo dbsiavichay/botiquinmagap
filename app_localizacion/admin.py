@@ -25,7 +25,7 @@ class SectorAdmin(admin.ModelAdmin):
 	search_fields = ('nombre',)
 
 class AsociacionAdmin(admin.ModelAdmin):
-	list_display = ('nombre', 'responsable', 'cordenadax', 'cordenaday', 'sector', 'tecnico', 'edit',)
+	list_display = ('nombre', 'responsable', 'latitud', 'longitud', 'sector', 'tecnico', 'edit',)
 	list_display_links = ('edit',)
 	list_filter = ('sector', 'tecnico',)
 	search_fields = ('nombre', 'responsable',)
