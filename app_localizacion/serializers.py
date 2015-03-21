@@ -14,10 +14,10 @@ class AsociacionSerializer(serializers.HyperlinkedModelSerializer):
 
 	def get_tecnico(self, obj):		
 		dict_tecnico = {}
-		dict_tecnico['username'] = self.tecnico.username
-		dict_tecnico['first_name']= self.tecnico.first_name
-		dict_tecnico['last_name']= self.tecnico.last_name
-		dict_tecnico['email']= self.tecnico.email
+		dict_tecnico['username'] = obj.tecnico.username
+		dict_tecnico['first_name']= obj.tecnico.first_name
+		dict_tecnico['last_name']= obj.tecnico.last_name
+		dict_tecnico['email']= obj.tecnico.email
 		return json.dumps(dict_tecnico)
 
 	def get_beneficiarios(self, obj):
