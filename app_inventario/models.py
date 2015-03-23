@@ -10,7 +10,7 @@ class Inventario(models.Model):
 	asociacion = models.ForeignKey(Asociacion)
 
 	def get_valor_total(self):
-		return self.cantidad * self.costo_unitario
+		return self.cantidad * self.valor_unitario
 
 	def edit(self):
 		return '<span class="icon-pencil"></a>'
