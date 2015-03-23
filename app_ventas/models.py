@@ -8,10 +8,10 @@ class Cliente(models.Model):
 	apellido = models.CharField(max_length = 64)
 
 	def edit(self):
-		return '<span class="icon-pencil"></a>'	
+		return '<span class="icon-pencil"></a>'
 
 	def __unicode__(self):
-		return '%s %s' % self.nombre, self.apellido
+		return '{0} {1}'.format(self.nombre, self.apellido)
 
 	edit.allow_tags = True
 
