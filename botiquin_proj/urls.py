@@ -4,6 +4,7 @@ from rest_framework import routers
 from app_localizacion.views import *
 from app_botiquin.views import *
 from app_ventas.views import *
+from app_compras.views import *
 
 router = routers.DefaultRouter()
 
@@ -24,6 +25,9 @@ router.register(r'ventas/especies', EspecieViewSet)
 router.register(r'ventas/ventas', VentaViewSet)
 router.register(r'ventas/detallesventa', DetalleVentaViewSet)
 router.register(r'ventas/usosventa', UsoVentaViewSet)
+
+router.register(r'compras/compras', CompraViewSet)
+router.register(r'compras/detallescompra', DetalleCompraViewSet)
 
 urlpatterns = patterns('',
     # Examples:
