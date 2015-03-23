@@ -5,6 +5,7 @@ from app_localizacion.views import *
 from app_botiquin.views import *
 from app_ventas.views import *
 from app_compras.views import *
+from app_inventario.views import *
 
 router = routers.DefaultRouter()
 
@@ -28,6 +29,10 @@ router.register(r'ventas/usosventa', UsoVentaViewSet)
 
 router.register(r'compras/compras', CompraViewSet)
 router.register(r'compras/detallescompra', DetalleCompraViewSet)
+
+router.register(r'inventario/inventarios', InventarioViewSet)
+router.register(r'inventario/caducados', CaducadoViewSet)
+router.register(r'inventario/kardexs', KardexViewSet)
 
 urlpatterns = patterns('',
     # Examples:
