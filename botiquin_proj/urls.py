@@ -9,30 +9,30 @@ from app_inventario.views import *
 
 router = routers.DefaultRouter()
 
-router.register(r'localizacion/provincias', ProvinciaViewSet)
-router.register(r'localizacion/cantones', CantonViewSet)
-router.register(r'localizacion/parroquias', ParroquiaViewSet)
-router.register(r'localizacion/sectores', SectorViewSet)
-router.register(r'localizacion/asociaciones', AsociacionViewSet)
+router.register(r'provincias', ProvinciaViewSet)
+router.register(r'cantones', CantonViewSet)
+router.register(r'parroquias', ParroquiaViewSet)
+router.register(r'sectores', SectorViewSet)
+router.register(r'asociaciones', AsociacionViewSet)
 
-router.register(r'botiquin/tiposproducto', TipoProductoViewSet)
-router.register(r'botiquin/gruposproducto', GrupoProductoViewSet)
-router.register(r'botiquin/medidasproducto', MedidaProductoViewSet)
-router.register(r'botiquin/productos', ProductoViewSet)
+router.register(r'tiposproducto', TipoProductoViewSet)
+router.register(r'gruposproducto', GrupoProductoViewSet)
+router.register(r'medidasproducto', MedidaProductoViewSet)
+router.register(r'productos', ProductoViewSet)
 
-router.register(r'ventas/clientes', ClienteViewSet)
-router.register(r'ventas/enfermedades', EnfermedadViewSet)
-router.register(r'ventas/especies', EspecieViewSet)
-router.register(r'ventas/ventas', VentaViewSet)
-router.register(r'ventas/detallesventa', DetalleVentaViewSet)
-router.register(r'ventas/usosventa', UsoVentaViewSet)
+router.register(r'clientes', ClienteViewSet)
+router.register(r'enfermedades', EnfermedadViewSet)
+router.register(r'especies', EspecieViewSet)
+router.register(r'ventas', VentaViewSet)
+router.register(r'detallesventa', DetalleVentaViewSet)
+router.register(r'usosventa', UsoVentaViewSet)
 
-router.register(r'compras/compras', CompraViewSet)
-router.register(r'compras/detallescompra', DetalleCompraViewSet)
+router.register(r'compras', CompraViewSet)
+router.register(r'detallescompra', DetalleCompraViewSet)
 
-router.register(r'inventario/inventarios', InventarioViewSet)
-router.register(r'inventario/caducados', CaducadoViewSet)
-router.register(r'inventario/kardexs', KardexViewSet)
+router.register(r'inventarios', InventarioViewSet)
+router.register(r'caducados', CaducadoViewSet)
+router.register(r'kardexs', KardexViewSet)
 
 urlpatterns = patterns('',
     # Examples:
