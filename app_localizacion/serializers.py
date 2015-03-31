@@ -25,12 +25,16 @@ class SectorSerializer(serializers.HyperlinkedModelSerializer):
 
 class AsociacionSerializer(serializers.HyperlinkedModelSerializer):
 
-	tecnico = serializers.SerializerMethodField()
 	beneficiarios = serializers.SerializerMethodField()
+	tecnico = serializers.SerializerMethodField()
+	ubicacion = serializers.SerializerMethodField();
 
 	class Meta:
 		model = Asociacion
-		fields = ('id', 'nombre','responsable', 'latitud', 'longitud', 'beneficiarios','observacion', 'sector','tecnico')		
+		fields = ('id', 'nombre','responsable', 'latitud', 'longitud', 'beneficiarios','tecnico','ubicacion','sector','observacion')
+
+	def get_beneficiarios(self, obj):
+		return Venta.objects.values('cliente__nombre').filter(asociacion = obj).distinct().count()
 
 	def get_tecnico(self, obj):		
 		dict_tecnico = {}
@@ -40,5 +44,11 @@ class AsociacionSerializer(serializers.HyperlinkedModelSerializer):
 		dict_tecnico['email']= obj.tecnico.email
 		return json.dumps(dict_tecnico)
 
-	def get_beneficiarios(self, obj):
-		return Venta.objects.values('cliente__nombre').filter(asociacion = obj).distinct().count()
+	def get_ubicacion(self, obj):
+		dict_ubicacion = {}
+		dict_ubicacion['sector'] = obj.sector.nombre
+		dict_ubicacion['parroquia'] = obj.sector.parroquia.nombre
+		dict_ubicacion['canton'] = obj.sector.parroquia.canton.nombre
+		dict_ubicacion['provincia'] = obj.sector.parroquia.canton.provincia.nombre
+		return json.dumps(dict_ubicacion)
+
