@@ -36,10 +36,13 @@ class VentaViewSet(viewsets.ModelViewSet):
 		queryset = Venta.objects.all()
 		id_cliente = self.request.QUERY_PARAMS.get('cliente', None)
 		id_asociacion = self.request.QUERY_PARAMS.get('asociacion', None)
+		id_tecnico = self.request.QUERY_PARAMS.get('tecnico', None)
 		if id_cliente is not None and id_asociacion is not None:
 			queryset = queryset.filter(cliente__id=id_cliente, asociacion__id=id_asociacion)
 		elif id_asociacion is not None:
 			queryset = queryset.filter(asociacion__id=id_asociacion)
+		elif id_tecnico is not None:
+			queryset = queryset.filter(asociacion__tecnico__id=id_tecnico)
 		return queryset
 
 class DetalleVentaViewSet(viewsets.ModelViewSet):
