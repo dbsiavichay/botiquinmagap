@@ -17,9 +17,18 @@ class EspecieSerializer(serializers.ModelSerializer):
 		fields = ('id', 'nombre',)
 
 class VentaSerializer(serializers.HyperlinkedModelSerializer):
+	cliente_nombre = serializers.SerializerMethodField()
+	asociacion_nombre = serializers.SerializerMethodField();
+
 	class Meta:
 		model = Venta
-		fields = ('id', 'fecha','valor_total', 'cliente', 'asociacion')
+		fields = ('id', 'fecha','valor_total', 'cliente_nombre', 'asociacion_nombre', 'cliente', 'asociacion')
+
+	def get_cliente_nombre(self, obj):
+		return obj.cliente.nombre + ' ' + obj.cliente.apellido
+
+	def get_asociacion_nombre(self, obj):
+		return obj.asociacion.nombre
 
 class DetalleVentaSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:

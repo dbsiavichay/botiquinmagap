@@ -44,11 +44,11 @@ class Venta(models.Model):
 	cliente = models.ForeignKey(Cliente)
 	asociacion = models.ForeignKey(Asociacion)	
 
+	def __unicode__(self):
+		return 'Venta # {0}'.format(self.id)
+
 	def edit(self):
 		return '<span class="icon-pencil"></a>'
-
-	def __unicode__(self):
-		return 'Cliente: %s, Fecha: %s, Valor: %s' % self.cliente, self.fecha, self.valor_total
 
 	edit.allow_tags = True
 

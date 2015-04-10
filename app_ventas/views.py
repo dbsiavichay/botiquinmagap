@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import *
@@ -9,15 +10,9 @@ class ClienteViewSet(viewsets.ModelViewSet):
 
 	def get_queryset(self):
 		queryset = Cliente.objects.all()
-		cedula = self.request.QUERY_PARAMS.get('cedula', None)		
-		nombre = self.request.QUERY_PARAMS.get('nombre', None)
-		apellido = self.request.QUERY_PARAMS.get('apellido', None)
-		if cedula is not None:
-			queryset = queryset.filter(cedula__startswith=cedula)
-		elif nombre is not None:
-			queryset = queryset.filter(nombre__contains=nombre)
-		elif apellido is not None:
-			queryset = queryset.filter(apellido__contains=apellido)
+		filtro = self.request.QUERY_PARAMS.get('filtro', None)				
+		if filtro is not None:
+			queryset = queryset.filter(Q(cedula__startswith=filtro)|Q(nombre__icontains=filtro)|Q(apellido__icontains=filtro))		
 		return queryset	
 
 class EnfermedadViewSet(viewsets.ReadOnlyModelViewSet):
