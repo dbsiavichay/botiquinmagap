@@ -16,6 +16,10 @@ class Compra(models.Model):
 	edit.allow_tags = True
 
 class DetalleCompra(models.Model):
+	class Meta:
+		verbose_name = 'detalle de compra'
+		verbose_name_plural = 'detalles de compra'
+
 	cantidad = models.DecimalField(max_digits = 7, decimal_places = 2)
 	costo_unitario = models.DecimalField(max_digits = 7, decimal_places = 2)
 	costo_total = models.DecimalField(max_digits = 9, decimal_places = 2)

@@ -16,6 +16,10 @@ class Cliente(models.Model):
 	edit.allow_tags = True
 
 class Enfermedad(models.Model):
+	class Meta:
+		verbose_name = 'enfermedad'
+		verbose_name_plural = 'enfermedades'
+
 	nombre = models.CharField(max_length = 128)
 
 	def edit(self):
@@ -53,6 +57,10 @@ class Venta(models.Model):
 	edit.allow_tags = True
 
 class DetalleVenta(models.Model):
+	class Meta:
+		verbose_name = 'detalle de venta'
+		verbose_name_plural = 'detalles de venta'
+
 	cantidad = models.DecimalField(max_digits = 7, decimal_places = 2)
 	precio_unitario = models.DecimalField(max_digits = 7, decimal_places = 2)
 	precio_total = models.DecimalField(max_digits = 9, decimal_places = 2)
@@ -65,6 +73,10 @@ class DetalleVenta(models.Model):
 	edit.allow_tags = True
 
 class UsoVenta(models.Model):
+	class Meta:
+		verbose_name = 'uso de venta'
+		verbose_name_plural = 'usos de venta'
+
 	cantidad = models.DecimalField(max_digits = 7, decimal_places = 2)
 	enfermedad = models.ForeignKey(Enfermedad)
 	especie = models.ForeignKey(Especie)
