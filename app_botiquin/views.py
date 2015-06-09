@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import *
@@ -24,7 +25,7 @@ class ProductoViewSet(viewsets.ReadOnlyModelViewSet):
 		id_medida = self.request.QUERY_PARAMS.get('medida',None)
 		id_tipo = self.request.QUERY_PARAMS.get('tipo', None)
 		id_grupo = self.request.QUERY_PARAMS.get('grupo',None)
-		nombre = self.request.QUERY_PARAMS.get('nombre', None)
+		keyword = self.request.QUERY_PARAMS.get('keyword', None)
 		if id_medida is not None and id_tipo is not None and id_grupo is not None:
 			queryset = queryset.filter(medida__id=id_medida, tipo__id=id_tipo, grupo__id=id_grupo)
 		elif id_medida is not None and id_tipo is not None:
@@ -39,7 +40,8 @@ class ProductoViewSet(viewsets.ReadOnlyModelViewSet):
 			queryset = queryset.filter(tipo__id=id_tipo)
 		elif id_grupo is not None:
 			queryset = queryset.filter(grupo__id=id_grupo)
-		elif nombre is not None:
-			queryset = queryset.filter(nombre__icontains=nombre)
+		elif keyword is not None:
+			queryset = queryset.filter(Q(nombre__icontains=keyword)|Q(compuesto__icontains=keyword)
+				|Q(presentacion__icontains=keyword)|Q(precio_referencial__icontains=keyword)|Q(registro_sanitario__icontains=keyword))
 			
 		return queryset

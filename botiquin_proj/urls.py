@@ -35,8 +35,7 @@ router.register(r'caducados', CaducadoViewSet)
 router.register(r'kardexs', KardexViewSet)
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'botiquin_proj.views.home', name='home'),
+    # Examples:    
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^', include(router.urls)),

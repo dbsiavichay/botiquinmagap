@@ -8,7 +8,7 @@ class ProvinciaSerializer(serializers.ModelSerializer):
 		model = Provincia
 		fields = ('id', 'codigo', 'nombre',)
 
-class CantonSerializer(serializers.HyperlinkedModelSerializer):
+class CantonSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Canton
 		fields = ('id', 'codigo', 'nombre', 'provincia')
