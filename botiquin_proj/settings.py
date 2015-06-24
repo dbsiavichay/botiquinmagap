@@ -36,10 +36,16 @@ SUIT_CONFIG = {
     'ADMIN_NAME': 'Botiquin Veterinario'
 }
 
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+}
+
 # Application definition
 
 INSTALLED_APPS = (
     'suit',
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

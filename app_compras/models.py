@@ -11,7 +11,7 @@ class Compra(models.Model):
 		return '<span class="icon-pencil"></a>'
 
 	def __unicode__(self):
-		return 'Fecha: %s, Valor: %s' % self.fecha, self.valor_total
+		return  'Fecha: {0} - Valor: {1}'.format(self.fecha, self.valor_total);
 
 	edit.allow_tags = True
 
