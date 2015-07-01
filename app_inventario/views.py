@@ -10,7 +10,10 @@ class InventarioViewSet(viewsets.ModelViewSet):
 	def get_queryset(self):
 		queryset = Inventario.objects.all()		
 		id_asociacion = self.request.QUERY_PARAMS.get('asociacion',None)
-		if id_asociacion is not None:
+		id_producto = self.request.QUERY_PARAMS.get('producto',None)
+		if id_asociacion is not None and id_producto is not None:
+			queryset = queryset.filter(asociacion__id=id_asociacion, producto__id=id_producto)
+		elif id_asociacion is not None:
 			queryset = queryset.filter(asociacion__id=id_asociacion)
 		return queryset	
 
