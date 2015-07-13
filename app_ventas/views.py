@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.db.models import Sum
 from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
@@ -33,14 +34,14 @@ class VentaViewSet(viewsets.ModelViewSet):
 		queryset = Venta.objects.all()
 		id_cliente = self.request.QUERY_PARAMS.get('cliente', None)
 		id_asociacion = self.request.QUERY_PARAMS.get('asociacion', None)
-		id_tecnico = self.request.QUERY_PARAMS.get('tecnico', None)
+		id_tecnico = self.request.QUERY_PARAMS.get('tecnico', None)		
 		if id_cliente is not None and id_asociacion is not None:
-			queryset = queryset.filter(cliente__id=id_cliente, asociacion__id=id_asociacion)
+			queryset = queryset.filter(cliente__id=id_cliente, asociacion__id=id_asociacion)		
 		elif id_asociacion is not None:
 			queryset = queryset.filter(asociacion__id=id_asociacion)
 		elif id_tecnico is not None:
 			queryset = queryset.filter(asociacion__tecnico__id=id_tecnico)
-		return queryset
+		return queryset		
 
 class DetalleVentaViewSet(viewsets.ModelViewSet):
 	queryset = DetalleVenta.objects.all()
@@ -48,9 +49,13 @@ class DetalleVentaViewSet(viewsets.ModelViewSet):
 
 	def get_queryset(self):
 		queryset = DetalleVenta.objects.all()
-		id_venta = self.request.QUERY_PARAMS.get('venta', None)				
+		id_venta = self.request.QUERY_PARAMS.get('venta', None)
+		id_asociacion = self.request.QUERY_PARAMS.get('asociacion', None)
+		mes = self.request.QUERY_PARAMS.get('mes', None)
 		if id_venta is not None:
 			queryset = queryset.filter(venta__id=id_venta)
+		elif id_asociacion is not None and mes is not None:
+			queryset = queryset.filter(venta__fecha__month=mes, venta__fecha__year=2015, venta__asociacion__id=id_asociacion)			
 		return queryset
 
 class UsoVentaViewSet(viewsets.ModelViewSet):
