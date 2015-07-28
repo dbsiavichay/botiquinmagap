@@ -51,11 +51,14 @@ class DetalleVentaViewSet(viewsets.ModelViewSet):
 		queryset = DetalleVenta.objects.all()
 		id_venta = self.request.QUERY_PARAMS.get('venta', None)
 		id_asociacion = self.request.QUERY_PARAMS.get('asociacion', None)
+		id_producto = self.request.QUERY_PARAMS.get('producto', None)
 		mes = self.request.QUERY_PARAMS.get('mes', None)
 		if id_venta is not None:
 			queryset = queryset.filter(venta__id=id_venta)
-		elif id_asociacion is not None and mes is not None:
-			queryset = queryset.filter(venta__fecha__month=mes, venta__fecha__year=2015, venta__asociacion__id=id_asociacion)			
+		elif id_asociacion is not None and mes is not None and id_producto is None:
+			queryset = queryset.filter(venta__fecha__month=mes, venta__fecha__year=2015, venta__asociacion__id=id_asociacion)
+		elif id_asociacion is not None and id_producto is not None and mes is not None:
+			queryset = queryset.filter(venta__asociacion__id=id_asociacion, producto__id=id_producto, venta__fecha__month=mes, venta__fecha__year=2015)
 		return queryset
 
 class UsoVentaViewSet(viewsets.ModelViewSet):

@@ -34,7 +34,7 @@ class Kardex(models.Model):
 	asociacion = models.ForeignKey(Asociacion)
 
 	def get_transaccion(self):
-		if tipo_transaccion == 0:
+		if self.tipo_transaccion == 1:
 			return "Entrada"
 		else:
 			return "Salida"

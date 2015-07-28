@@ -10,9 +10,9 @@ class InventarioViewSet(viewsets.ModelViewSet):
 	def get_queryset(self):
 		queryset = Inventario.objects.all()		
 		id_asociacion = self.request.QUERY_PARAMS.get('asociacion',None)
-		id_producto = self.request.QUERY_PARAMS.get('producto',None)
+		id_producto = self.request.QUERY_PARAMS.get('producto',None)		
 		if id_asociacion is not None and id_producto is not None:
-			queryset = queryset.filter(asociacion__id=id_asociacion, producto__id=id_producto)
+			queryset = queryset.filter(asociacion__id=id_asociacion, producto__id=id_producto)				
 		elif id_asociacion is not None:
 			queryset = queryset.filter(asociacion__id=id_asociacion)
 		return queryset	
@@ -36,6 +36,9 @@ class KardexViewSet(viewsets.ModelViewSet):
 		queryset = Kardex.objects.all()
 		id_asociacion = self.request.QUERY_PARAMS.get('asociacion', None)
 		id_producto = self.request.QUERY_PARAMS.get('producto', None)
+		inicial = self.request.	QUERY_PARAMS.get('inicial', None)
 		if id_asociacion is not None and id_producto is not None:
 			queryset = queryset.filter(asociacion__id=id_asociacion, producto__id=id_producto)
+		elif id_asociacion is not None and inicial is not None:
+			queryset = queryset.filter(asociacion__id= id_asociacion, descripcion__icontains='Inventario inicial')
 		return queryset
