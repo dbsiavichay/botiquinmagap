@@ -3,12 +3,12 @@ from app_localizacion.models import Asociacion, Sector, Parroquia, Canton, Provi
 from app_ventas.models import Venta
 import json
 
-class ProvinciaSerializer(serializers.ModelSerializer):
+class ProvinciaSerializer(serializers.ModelSerializer):	
 	class Meta:
 		model = Provincia
 		fields = ('id', 'codigo', 'nombre',)
 
-class CantonSerializer(serializers.ModelSerializer):
+class CantonSerializer(serializers.ModelSerializer):	
 	class Meta:
 		model = Canton
 		fields = ('id', 'codigo', 'nombre', 'provincia')

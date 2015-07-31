@@ -42,7 +42,7 @@ class ParroquiaViewSet(viewsets.ReadOnlyModelViewSet):
 			queryset = queryset.filter(canton__id=id_canton)
 		return queryset
 
-class CantonViewSet(viewsets.ReadOnlyModelViewSet):
+class CantonViewSet(viewsets.ModelViewSet):
 	queryset = Canton.objects.all()
 	serializer_class = CantonSerializer
 
@@ -53,6 +53,6 @@ class CantonViewSet(viewsets.ReadOnlyModelViewSet):
 			queryset = queryset.filter(provincia__id=id_provincia)
 		return queryset
 
-class ProvinciaViewSet(viewsets.ReadOnlyModelViewSet):
+class ProvinciaViewSet(viewsets.ModelViewSet):
 	queryset = Provincia.objects.all()
 	serializer_class = ProvinciaSerializer

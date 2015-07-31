@@ -45,7 +45,7 @@ class Especie(models.Model):
 class Venta(models.Model):
 	fecha = models.DateField()
 	valor_total = models.DecimalField(max_digits = 9, decimal_places = 2)
-	cliente = models.ForeignKey(Cliente)
+	cliente = models.ForeignKey(Cliente, related_name='data_cliente')
 	asociacion = models.ForeignKey(Asociacion)	
 
 	def __unicode__(self):
@@ -65,7 +65,7 @@ class DetalleVenta(models.Model):
 	precio_unitario = models.DecimalField(max_digits = 7, decimal_places = 2)
 	precio_total = models.DecimalField(max_digits = 9, decimal_places = 2)
 	producto = models.ForeignKey(Producto)
-	venta = models.ForeignKey(Venta)
+	venta = models.ForeignKey(Venta, related_name="detalles")
 
 	def edit(self):
 		return '<span class="icon-pencil"></a>'
@@ -80,4 +80,4 @@ class UsoVenta(models.Model):
 	cantidad = models.DecimalField(max_digits = 7, decimal_places = 2)
 	enfermedad = models.ForeignKey(Enfermedad)
 	especie = models.ForeignKey(Especie)
-	detalle_venta = models.ForeignKey(DetalleVenta)
+	detalle_venta = models.ForeignKey(DetalleVenta, related_name='usos')
