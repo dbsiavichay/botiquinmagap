@@ -24,7 +24,7 @@ class DetalleCompra(models.Model):
 	costo_unitario = models.DecimalField(max_digits = 7, decimal_places = 2)
 	costo_total = models.DecimalField(max_digits = 9, decimal_places = 2)
 	producto = models.ForeignKey(Producto)
-	compra = models.ForeignKey(Compra)
+	compra = models.ForeignKey(Compra, related_name='detalles')
 
 	def edit(self):
 		return '<span class="icon-pencil"></a>'
