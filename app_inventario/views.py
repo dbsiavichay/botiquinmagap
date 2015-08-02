@@ -17,28 +17,17 @@ class InventarioViewSet(viewsets.ModelViewSet):
 			queryset = queryset.filter(asociacion__id=id_asociacion)
 		return queryset	
 
-class CaducadoViewSet(viewsets.ModelViewSet):
-	queryset = Caducado.objects.all()
-	serializer_class = CaducadoSerializer
+class CaducidadViewSet(viewsets.ModelViewSet):
+	queryset = Caducidad.objects.all()
+	serializer_class = CaducidadSerializer
 
 	def get_queryset(self):
-		queryset = Caducado.objects.all()
-		id_inventario = self.request.QUERY_PARAMS.get('inventario',None)
-		if id_inventario is not None:
-			queryset = queryset.filter(inventario__id=id_inventario)
-		return queryset
-
-class KardexViewSet(viewsets.ModelViewSet):
-	queryset = Kardex.objects.all()
-	serializer_class = KardexSerializer
-
-	def get_queryset(self):
-		queryset = Kardex.objects.all()
-		id_asociacion = self.request.QUERY_PARAMS.get('asociacion', None)
-		id_producto = self.request.QUERY_PARAMS.get('producto', None)
-		inicial = self.request.	QUERY_PARAMS.get('inicial', None)
+		queryset = Caducidad.objects.all()
+		id_asociacion = self.request.QUERY_PARAMS.get('asociacion',None)
+		id_producto = self.request.QUERY_PARAMS.get('producto',None)
 		if id_asociacion is not None and id_producto is not None:
 			queryset = queryset.filter(asociacion__id=id_asociacion, producto__id=id_producto)
-		elif id_asociacion is not None and inicial is not None:
-			queryset = queryset.filter(asociacion__id= id_asociacion, descripcion__icontains='Inventario inicial')
+		elif id_asociacion is not None:
+			queryset = queryset.filter(asociacion__id=id_asociacion)
+			
 		return queryset

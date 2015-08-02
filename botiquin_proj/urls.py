@@ -31,8 +31,7 @@ router.register(r'compras', CompraViewSet)
 router.register(r'detallescompra', DetalleCompraViewSet)
 
 router.register(r'inventarios', InventarioViewSet)
-router.register(r'caducados', CaducadoViewSet)
-router.register(r'kardexs', KardexViewSet)
+router.register(r'caducidad', CaducidadViewSet)
 
 urlpatterns = patterns('',
     # Examples:    

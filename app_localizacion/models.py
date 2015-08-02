@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Provincia(models.Model):
 	codigo = models.CharField(max_length = 32)
 	nombre = models.CharField(max_length = 64)

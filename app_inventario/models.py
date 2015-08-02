@@ -6,6 +6,8 @@ from app_compras.models import DetalleCompra
 class Inventario(models.Model):
 	cantidad = models.DecimalField(max_digits = 7, decimal_places = 2)
 	valor_unitario = models.DecimalField(max_digits = 7, decimal_places = 2)
+	es_inicial = models.BooleanField(default=False)
+	cantidad_inicial = models.DecimalField(max_digits = 7, decimal_places = 2, default=0)
 	producto = models.ForeignKey(Producto)
 	asociacion = models.ForeignKey(Asociacion)
 
@@ -17,33 +19,15 @@ class Inventario(models.Model):
 
 	edit.allow_tags = True
 
-class Caducado(models.Model):
-	cantidad = models.DecimalField(max_digits = 7, decimal_places = 2)
-	fecha = models.DateField()
-	inventario = models.ForeignKey(Inventario)
-	detalleCompra = models.ForeignKey(DetalleCompra)
+class Caducidad(models.Model):
+	class Meta:
+		verbose_name = 'Caducidad'
+		verbose_name_plural = 'Caducidad'
 
-class Kardex(models.Model):
 	fecha = models.DateField()
-	tipo_transaccion = models.PositiveSmallIntegerField()
-	descripcion = models.CharField(max_length = 256)
-	cantidad = models.DecimalField(max_digits = 7, decimal_places = 2)
-	valor_unitario = models.DecimalField(max_digits = 7, decimal_places = 2)
-	saldo = models.DecimalField(max_digits = 7, decimal_places = 2)	
+	cantidad = models.DecimalField(max_digits = 7, decimal_places = 2)		
 	producto = models.ForeignKey(Producto)
-	asociacion = models.ForeignKey(Asociacion)
-
-	def get_transaccion(self):
-		if self.tipo_transaccion == 1:
-			return "Entrada"
-		else:
-			return "Salida"
-
-	def get_total_transaccion(self):
-		return self.cantidad * self.valor_unitario
-
-	def get_total_saldo(self):
-		return self.saldo * self.valor_unitario
+	asociacion = models.ForeignKey(Asociacion)	
 
 	def edit(self):
 		return '<span class="icon-pencil"></a>'
