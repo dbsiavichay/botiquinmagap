@@ -25,6 +25,7 @@ class CaducidadViewSet(viewsets.ModelViewSet):
 		queryset = Caducidad.objects.all()
 		id_asociacion = self.request.QUERY_PARAMS.get('asociacion',None)
 		id_producto = self.request.QUERY_PARAMS.get('producto',None)
+				
 		if id_asociacion is not None and id_producto is not None:
 			queryset = queryset.filter(asociacion__id=id_asociacion, producto__id=id_producto)
 		elif id_asociacion is not None:
