@@ -56,3 +56,14 @@ class CantonViewSet(viewsets.ModelViewSet):
 class ProvinciaViewSet(viewsets.ModelViewSet):
 	queryset = Provincia.objects.all()
 	serializer_class = ProvinciaSerializer
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+	queryset = User.objects.all()
+	serializer_class = UserSerializer
+
+	def get_queryset(self):
+		queryset = User.objects.all()
+		username = self.request.QUERY_PARAMS.get('user', None)
+		if username is not None:
+			queryset = queryset.filter(username=username)
+		return queryset

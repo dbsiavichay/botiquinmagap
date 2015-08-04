@@ -1,7 +1,10 @@
 from rest_framework import serializers
 from app_localizacion.models import Asociacion, Sector, Parroquia, Canton, Provincia
 from app_ventas.models import Venta
+from django.contrib.auth.models import User
 import json
+
+
 
 class ProvinciaSerializer(serializers.ModelSerializer):	
 	class Meta:
@@ -52,3 +55,10 @@ class AsociacionSerializer(serializers.HyperlinkedModelSerializer):
 		dict_ubicacion['provincia'] = obj.sector.parroquia.canton.provincia.nombre
 		return json.dumps(dict_ubicacion)
 
+class UserSerializer(serializers.ModelSerializer):
+	asociaciones = AsociacionSerializer(many=True, read_only=True)
+	groups = serializers.StringRelatedField(many=True)
+
+	class Meta:
+		model = User
+		fields = ('id', 'username', 'asociaciones', 'groups')

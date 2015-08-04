@@ -4,6 +4,7 @@ from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from datetime import date
 from .serializers import *
 from .models import *
 
@@ -58,7 +59,8 @@ class DetalleVentaViewSet(viewsets.ModelViewSet):
 		elif id_asociacion is not None and mes is not None and id_producto is None:
 			queryset = queryset.filter(venta__fecha__month=mes, venta__fecha__year=2015, venta__asociacion__id=id_asociacion)
 		elif id_asociacion is not None and id_producto is not None and mes is not None:
-			queryset = queryset.filter(venta__asociacion__id=id_asociacion, producto__id=id_producto, venta__fecha__month=mes, venta__fecha__year=2015)
+			fecha = date(2015, int(mes) +1 , 1)			
+			queryset = queryset.filter(venta__asociacion__id=id_asociacion, producto__id=id_producto, venta__fecha__lte=fecha)
 		return queryset
 
 class UsoVentaViewSet(viewsets.ModelViewSet):

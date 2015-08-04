@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from rest_framework import routers
+from rest_framework.authtoken import views
 from app_localizacion.views import *
 from app_botiquin.views import *
 from app_ventas.views import *
@@ -32,6 +33,7 @@ router.register(r'detallescompra', DetalleCompraViewSet)
 
 router.register(r'inventarios', InventarioViewSet)
 router.register(r'caducidad', CaducidadViewSet)
+router.register(r'usuarios', UserViewSet)
 
 urlpatterns = patterns('',
     # Examples:    
@@ -39,4 +41,6 @@ urlpatterns = patterns('',
 
     url(r'^', include(router.urls)),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api-token-auth/', views.obtain_auth_token),
 )
+

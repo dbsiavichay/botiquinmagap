@@ -68,7 +68,7 @@ class Asociacion(models.Model):
 	longitud = models.FloatField(null = True, blank=True)
 	observacion = models.TextField(null = True, blank=True)
 	sector = models.ForeignKey(Sector)
-	tecnico = models.ForeignKey(User)
+	tecnico = models.ForeignKey(User,related_name='asociaciones')
 
 	def edit(self):
 		return '<span class="icon-pencil"></a>'

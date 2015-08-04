@@ -41,6 +41,15 @@ GRAPH_MODELS = {
     'group_models': True,
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',        
+    )
+}
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -53,6 +62,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'app_localizacion',
     'app_botiquin',
